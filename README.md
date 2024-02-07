@@ -1,9 +1,7 @@
-# sanremodata
-Sanremo italian music festival data scraping 
+# Sanremodata Project Scraper dati
+## Creazione di un dataset del festival di Sanremo
 
-# Project 1 Week 1 
-# Project Scraper dati sanremo sede,partecipanti,presentatore,vincitore, 
-andiamo a scaricare le prime informazioni necessarie, il lavoro svolto permettere di scaricare
+Andiamo a scaricare le prime informazioni necessarie, il lavoro svolto permettere di scaricare
 3 dataframe-tabelle
 che andremo a scaricare
 
@@ -18,23 +16,6 @@ Da queste due tabelle precedenti risaliamo tramite l'informazioni 'Canzone' ad u
 - 3. Registrazione su spotify per le credenziali Api (si trova facilmente guida online step by step)
 
 ## Prima tabella informazioni sui festival di Sanremo dal 1951 al 2023
-
-Anteprima di risultato del prima tabella
-
-| Anno        | formato      | dimensione     | link fonte    | descrizione |
-| ------------- |:-------------:| :-------------:|:-------------|:-------------|
-|dataset_bank.csv| CSV | 10 | api.revolut.com/bankdata/| Dataset della banca sui clienti che hanno richiesto un credito e risultato del credit score |
-| dataset_fiscalagency.json | JSON      |   10 | api.agenziaentrate.gov.it/portale/ | Dataset dell’agenzia delle entrate sui dieci clienti che hanno richiesto il credito |
-| dataset_transactions.xml |  XML      |    10 | api.stripe.com/bank/37475859 | Dataset creato da azienda di credito terza su tutti i pagamenti online e offline effettuati |
-
-## Seconda tabella informazioni sulle classifiche di Sanremo dal 1951 al 2023
-
-Solo i già clienti possono richiedere un prestito o credito al consumo.
-I clienti possono richiedere un credito della durata massima 30 anni, di quantità non superiore a 300.000 €, non è importante sapere il tasso a cui è stato richiesto il prestito.
-I clienti possono chiedere un credito per l’acquisto di una car, house, other. I dati forniti dalla banca sono in formato CSV.
-
-## Terza tabella informazioni sulle canzoni presentate a Sanremo dal 1951 al 2023 tramite Spotify
-Per tutti Per i clienti (10), identificati da un codice numerico univoco, il codice fiscale, il codice cliente, l’età, il sesso, lo stato civile, il lavoro, se si vive in casa di proprietà o in affitto, la somma che è sul conto, l’ammontare del credito, la duruta del credito richiesto, la decisione del modello.
 
 
 ### Python dataset preview
@@ -86,55 +67,30 @@ for year in range(year_start, year_end):
 # Puoi convertire questa lista in un DataFrame pandas se lo desideri
 
 ```
-## JSON dataset preview
-```json
-{
-    "contribuenti": 
-    [
-        {
-            "codice_contribuente": 551551,
-            "nome": "Maria",
-            "cognome": "Rossi",
-            "cod_fiscale": "MRARSS90P29H501U",
-            "indirizzo": 
-            {
-                "citta": "Roma",
-                "provincia": "RM",
-                "cap": "00146",
-                "numero": "33",
-                "tipo": "Piazza",
-                "nome_zona": "Navona"
-            },
-            "reddito": 
-            {
-                "reddito_dipendente": 
-                {
-                    "anno2018":12030,
-                    "anno2019":12342,
-                    "anno2020":29300,
-                    "anno2021":23190,
-                    "anno2022":25000
-                },
-                "reddito_altri": ["terreni","azioni","obbligazioni"],
-                "persone_a_carico":true
-            }
-        }
-      ]
-   }
-```
-## CSV dataset preview
 
+## XLSX table preview
+Anteprima di risultato del prima tabella
+
+| Anno        | formato      | dimensione     | link fonte    | descrizione |
+| ------------- |:-------------:| :-------------:|:-------------|:-------------|
+|dataset_bank.csv| CSV | 10 | api.revolut.com/bankdata/| Dataset della banca sui clienti che hanno richiesto un credito e risultato del credit score |
+| dataset_fiscalagency.json | JSON      |   10 | api.agenziaentrate.gov.it/portale/ | Dataset dell’agenzia delle entrate sui dieci clienti che hanno richiesto il credito |
+| dataset_transactions.xml |  XML      |    10 | api.stripe.com/bank/37475859 | Dataset creato da azienda di credito terza su tutti i pagamenti online e offline effettuati |
+
+## Seconda tabella informazioni sulle classifiche di Sanremo dal 1951 al 2023
+
+Solo i già clienti possono richiedere un prestito o credito al consumo.
+I clienti possono richiedere un credito della durata massima 30 anni, di quantità non superiore a 300.000 €, non è importante sapere il tasso a cui è stato richiesto il prestito.
+I clienti possono chiedere un credito per l’acquisto di una car, house, other. I dati forniti dalla banca sono in formato CSV.
+
+## Terza tabella informazioni sulle canzoni presentate a Sanremo dal 1951 al 2023 tramite Spotify
+Per tutti Per i clienti (10), identificati da un codice numerico univoco, il codice fiscale, il codice cliente, l’età, il sesso, lo stato civile, il lavoro, se si vive in casa di proprietà o in affitto, la somma che è sul conto, l’ammontare del credito, la duruta del credito richiesto, la decisione del modello.
+
+
+## CSV dataset preview
 
 |id| fiscal_code | banck_account_number|age|sex|personal_status|job|housing|saving_account|credit_amount|duration|purpose|decision|
 | ------------- |:-------------:| :-------------:|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|:-------------|
 1|MRARSS90P29H501U|843721|23|M|single|Insegnante|proprietà|30000|25000|5|car|yes|
 2|FHHGMS459TOVK595|539889|61|F|single|Ingegnere|affitto|10000|130000|10|house|no|
 3|GHCMET56970FKB95|701740|65|F|single|Libero Professionista|affitto|50000|25000|15|car|no|
-
-## Implementazione
-Di seguito viene illustrato come verrà implementato il data lake per la banca. Nel disegno possiamo vedere come le diverse origini di dati vengono convogliate in un data lake. 
-
-![alt text](https://github.com/giuschil/epicode-data-analyst/blob/main/project1-week1/credito-schema-revolut.png)
-
-![alt text](https://github.com/giuschil/epicode-data-analyst/blob/main/project1-week1/schema-transaction-revolut.png)
-
